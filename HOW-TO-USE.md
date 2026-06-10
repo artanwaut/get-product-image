@@ -108,3 +108,45 @@ PORT=3001 npm start
 | `index.html` | หน้า UI สำหรับกรอก URL และแสดงผลลัพธ์ |
 | `server.js` | Backend ดึง HTML จาก URL ภายนอก แล้ว parse หา URL รูป |
 | `package.json` | กำหนด dependencies และ script รัน server |
+| `render.yaml` | Config สำหรับ deploy บน Render |
+
+---
+
+## Push ขึ้น GitHub
+
+Repository: **https://github.com/artanwaut/get-product-image**
+
+### ครั้งแรก (login GitHub)
+
+```bash
+gh auth login
+```
+
+เลือก GitHub.com → HTTPS → Login ผ่าน browser
+
+### สร้าง repo และ push
+
+```bash
+cd /Users/odt/Desktop/get-product-image
+
+gh repo create artanwaut/get-product-image --public --source=. --remote=origin --push
+```
+
+ถ้า repo มีอยู่แล้ว:
+
+```bash
+git remote add origin https://github.com/artanwaut/get-product-image.git
+git push -u origin main
+```
+
+---
+
+## Deploy ให้เปิดใช้บน URL จริง (Render — ฟรี)
+
+> GitHub Pages ใช้ไม่ได้ เพราะต้องมี Node.js server
+
+1. Push โค้ดขึ้น GitHub (ขั้นตอนด้านบน)
+2. ไปที่ [render.com](https://render.com) → Sign up with GitHub
+3. **New +** → **Blueprint** → เลือก repo `artanwaut/get-product-image`
+4. Render จะอ่าน `render.yaml` อัตโนมัติ → **Apply**
+5. ได้ URL เช่น `https://get-product-image.onrender.com`
